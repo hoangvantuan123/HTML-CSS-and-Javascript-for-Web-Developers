@@ -1,0 +1,263 @@
+/* Base setting, you can remove */
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Source Code Pro', monospace;
+}
+.wrapper{
+    position: fixed;
+    background-color: rgb(241, 241, 241);
+    width: 100%;
+    z-index: 999;
+}
+.wrapper nav {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    height: 90px ;
+    padding: 0 50px 0 100px ;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo h1 a{
+    font-size: 27px ;
+    font-weight: 900;
+    text-decoration: none;
+    color: #000;
+}
+.menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 20px;
+    z-index: 1;
+}
+
+.menu-item:not(:first-child) {
+    margin-left: 15px;
+}
+
+.menu-link {
+    text-decoration: none;
+    color: #333;
+}
+
+.menu-item.has-child {
+    position: relative;
+}
+
+.menu-item.has-child:hover .menu-child {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-child {
+    --top-space: 20px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.2s ease;
+    list-style: none;
+    transform: translateY(var(--top-space));
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+.menu-child:before {
+    content: "";
+    height: var(--top-space);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.menu-child {
+    border: 1px solid #eee;
+    min-width: 250px;
+}
+
+.menu-child-link {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+.menu li label {
+    display: none;
+}
+.menu li a:hover,
+.menu li label:hover{
+    color: coral;
+    transition: all .3s;
+}
+
+
+.wrapper .menu-icon {
+    display: none;
+}
+
+.wrapper input[type="checkbox"] {
+    display: none;
+}
+
+/* */
+@media   (max-width: 920px ) {
+    .wrapper .menu-icon{
+        display: block ;
+    }
+    .wrapper nav {
+        padding: 0 20px;
+    }
+    nav .logo {
+        position: relative;
+        max-width: 350px ;
+    }
+    /* làm dấu X biến mất thanh menu đi */
+    .wrapper #show-menu:checked~.menu-icon i::before{
+        content: '\f00d';
+    }
+
+    nav .menu{
+        position: absolute;
+        display: block;
+        background: #f8f5f5f7;
+        height: 200vh;
+        width: 100%;
+        top: 90px;
+        left: 100%;
+        margin-left: 0;
+        max-width: 100%;
+        overflow-y: auto;
+        padding-bottom: 100px;
+        transition: all 0.3s ease;
+        z-index: 3;
+    }
+    nav #show-menu:checked~.menu {
+        left: 0%;
+    }
+    .menu li {
+        margin: 15px 20px ;
+    }
+    .menu li a , .menu li label {
+        width: 100%;
+        line-height: 40px;
+        font-size: 18px;
+        font-weight: 800;
+        display: block;
+        margin: 0 auto;
+        padding:10px ;
+        cursor: pointer;
+        text-align: center;
+    }
+    .menu li .menu-link{
+        display: none;
+    }
+    .menu ul {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        background: none;
+        max-height: 0px;
+        overflow: hidden;
+        z-index: 3;
+    }
+    .menu #show-item1:checked~ul,
+    .menu #show-item2:checked~ul,
+    .menu #show-item3:checked~ul,
+    .menu #show-item4:checked~ul{
+        max-height: 100vh;
+    }
+    .menu-child li a{
+        padding: 20px;
+    }
+
+}
+
+/**/
+.content{
+    position: relative;
+    z-index: 2;
+    top:100px ;
+}
+.content  h2 {
+    font-size: 3em ;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.7;
+}
+.row{
+    position: relative;
+    justify-content: center;
+    display: flex;
+}
+.item {
+    width: 400px;
+    min-height: 540px;
+    background-color: rgba(245, 244, 244, 0.705);
+    margin-top:20px;
+    margin-right: 25px ;
+    padding: 20px ;
+    border-radius: 10px ;
+    box-shadow: 5.8px 11.7px 11.7px hsl(0deg 0% 0% / 0.32);
+}
+.menu-title {
+    text-align: center;
+    font-size: 20px ;
+    font-weight: 700;
+    opacity: 0.7;
+
+}
+.item p{
+    margin-top: 20px ;
+    opacity: 0.7;
+    max-width: 400px;
+
+
+}
+.item a {
+    font-weight: 600;
+}
+@media only screen
+and (min-device-width: 768px)
+and (max-device-width: 1024px)
+and (orientation: portrait)
+and (-webkit-min-device-pixel-ratio: 1) {
+    .row{
+        flex-wrap: wrap;
+        margin: 0 auto;
+
+    }
+    .item {
+        margin: 20px ;
+    }
+    #menu3{
+        width: 828px;
+
+
+    }
+    #menu3 p{
+        max-width: 800px;
+    }
+}
+@media (max-width:600px) {
+
+     .row{
+         margin: 0 auto;
+         flex-wrap: wrap;
+     }
+     .item {
+         margin:20px;
+     }
+}
